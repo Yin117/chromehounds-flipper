@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import AppLayout from './AppLayout';
 import { HomePage } from './pages/Home.page';
 import { Models3D } from './components/Models3D/Models3D';
@@ -7,7 +7,7 @@ import { Photos } from './components/Photos/Photos';
 
 export function App() {
   return (
-    <BrowserRouter basename="/chromehounds-flipper">
+    <HashRouter>
       <Routes>
         {/* Wrap everything in the Layout, note lack of `/` makes it relative */}
         <Route element={<AppLayout />}>
@@ -19,6 +19,6 @@ export function App() {
           <Route path="Photos" element={<Photos />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
