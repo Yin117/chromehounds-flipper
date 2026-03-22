@@ -1,0 +1,26 @@
+/* src/fonts.css */
+@font-face {
+  font-family: 'Chromehounds';
+  src: url('./assets/fonts/Chromehounds/ChromeHoundsFont.woff2') format('woff2'),
+       url('./assets/fonts/Chromehounds/ChromeHoundsFont.woff') format('woff'),
+       url('./assets/fonts/Chromehounds/ChromeHoundsFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Ensures text is visible while loading */
+}
+
+.body {
+  height: 100vh;
+  background: url('./assets/images/background.png') !important;
+  
+  /* Standard "Full Screen" background settings */
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
+
+.mantine-Title-root {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

@@ -1,0 +1,7 @@
+.baseOverlay {
+  background-color: color-mix(
+    in srgb,
+    light-dark(var(--mantine-color-white), var(--mantine-color-black)),
+    transparent 40%
+  );
+}
