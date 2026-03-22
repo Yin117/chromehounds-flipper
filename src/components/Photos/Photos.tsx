@@ -1,24 +1,37 @@
-import { Box, Card, Image, SimpleGrid, Stack, Text } from '@mantine/core';
+import { Box, Card, Image, NativeSelect, SimpleGrid, Stack, Text } from '@mantine/core';
+import { useState } from 'react';
 // import { imagesParts } from '@src/consts/imageFiles';
 
 
 const imagesParts = import.meta.glob('@src/assets/images/Photos/Parts/**', { 
   eager: true, 
-  as: 'url' 
+  import: 'default'
 });
-const imagesPartsEntries = Object.entries(imagesParts);
+const imagesPartsList = Object.entries(imagesParts).map(([path, url]) => ({
+  path,
+  url: url as string,
+  fileName: path.split('/').pop()
+}));
 
 const imagesChars = import.meta.glob('@src/assets/images/Photos/Characters/**', { 
-  eager: true, 
-  as: 'url' 
+  eager: true,
+  import: 'default'
 });
-const imagesCharsEntries = Object.entries(imagesChars);
+const imagesCharsList = Object.entries(imagesChars).map(([path, url]) => ({
+  path,
+  url: url as string,
+  fileName: path.split('/').pop()
+}));
 
 const imagesMapObjs = import.meta.glob('@src/assets/images/Photos/MapObjects/**', { 
-  eager: true, 
-  as: 'url' 
+  eager: true,
+  import: 'default'
 });
-const imagesMapObjsEntries = Object.entries(imagesMapObjs);
+const imagesMapObjsList = Object.entries(imagesMapObjs).map(([path, url]) => ({
+  path,
+  url: url as string,
+  fileName: path.split('/').pop()
+}));
 
 function filenameRefactored(filename?: string) {
   if (filename == undefined) {
@@ -27,7 +40,10 @@ function filenameRefactored(filename?: string) {
   return filename.substring('image_'.length, filename.length - 8).split('_').join(' ');
 }
 
+type PhotoSets = 'Parts' | 'Characters' | 'Map Objects';
+
 export function Photos() {
+  const [photoSet, setPhotoSet] = useState<PhotoSets>('Parts')
   return (
     <>
       <Text size="xl">
@@ -36,9 +52,15 @@ export function Photos() {
       <Text>
         Eventually there will be: more information, QOL, and search tools available.
       </Text>
+      <NativeSelect
+        data={['Parts', 'Characters', 'Map Objects']}
+        value={photoSet}
+        onChange={({ currentTarget: { value } }) => setPhotoSet(value as PhotoSets)}
+      />
       <Box mah="70vh" style={{ overflowY: 'scroll' }}>
+        {photoSet === 'Parts' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
-          {imagesPartsEntries.map(([path, url]) => {
+          {imagesPartsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
             const fileName = path.split('/').pop();
 
@@ -57,18 +79,16 @@ export function Photos() {
                 </Card.Section>
 
                 <Text fw={500} size="sm" mt="md" c="dimmed" ta="center">
-                  Part - {filenameRefactored(fileName)}
+                  Part - {filenameRefactored(fileName)} ({idx + 1}/{imagesPartsList.length})
                 </Text>
               </Card>
             );
           })}
-        </SimpleGrid>
+        </SimpleGrid>}
 
-        <Text size="lg" mt="lg">
-          Map Objects
-        </Text>
+        {photoSet === 'Map Objects' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
-          {imagesMapObjsEntries.map(([path, url]) => {
+          {imagesMapObjsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
             const fileName = path.split('/').pop();
 
@@ -87,18 +107,16 @@ export function Photos() {
                 </Card.Section>
 
                 <Text fw={500} size="sm" mt="md" c="dimmed" ta="center">
-                  Map Object - {filenameRefactored(fileName)}
+                  Map Object - {filenameRefactored(fileName)} ({idx + 1}/{imagesMapObjsList.length})
                 </Text>
               </Card>
             );
           })}
-        </SimpleGrid>
+        </SimpleGrid>}
 
-        <Text size="lg" mt="lg">
-          Characters
-        </Text>
+        {photoSet === 'Characters' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
-          {imagesCharsEntries.map(([path, url]) => {
+          {imagesCharsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
             const fileName = path.split('/').pop();
 
@@ -117,12 +135,12 @@ export function Photos() {
                 </Card.Section>
 
                 <Text fw={500} size="sm" mt="md" c="dimmed" ta="center">
-                  Character - {filenameRefactored(fileName)}
+                  Character - {filenameRefactored(fileName)} ({idx + 1}/{imagesCharsList.length})
                 </Text>
               </Card>
             );
           })}
-        </SimpleGrid>
+        </SimpleGrid>}
       </Box>
     </>
   );
