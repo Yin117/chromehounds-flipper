@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rolldown/binding-win32-x64-msvc": "^1.0.0-rc.10",
     "path": "^0.12.7",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
@@ -35,6 +34,6 @@
     "vite-tsconfig-paths": "^6.1.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+    "@rolldown/binding-linux-x64-gnu": "*"
   }
 }
