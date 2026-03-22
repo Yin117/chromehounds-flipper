@@ -9,7 +9,7 @@ import {
   // IconSwitchHorizontal,
   // IconUser,
 } from '@tabler/icons-react';
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import { Center, Image, Stack, Tooltip, UnstyledButton } from '@mantine/core';
 import Logo from '@src/favicon.png';
 import classes from './NavBar.module.css';

@@ -1,7 +1,6 @@
 import '@mantine/core/styles.css';
 
 import { AppShell, Center, createTheme, MantineProvider, Title } from '@mantine/core';
-import { Router } from './Router';
 import { theme as baseTheme } from './theme';
 import './globalStyles.css';
 import { useState } from 'react';
