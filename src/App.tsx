@@ -21,7 +21,7 @@ export default function App() {
     fontFamily: useCustomFont ? 'Chromehounds, sans-serif' : SYSTEM_FONTS,
   });
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme='dark'>
       <style>
         {`
           body {
