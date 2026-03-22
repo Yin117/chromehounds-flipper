@@ -9,15 +9,15 @@ import UVMap from '@src/assets/images/UVMap.png';
 export function Welcome() {
   return (
     <>
-      <Text p="md">
+      <Text>
         Welcome, here you'll find information, images, and instructions on extracting assets from Chromhounds.
       </Text>
-      <Text p="md">
+      <Text>
         It is expected that you have the Open Combas project setup and working, from this you'll have access to various folders
         mentioned throughout this website.
       </Text>
 
-      <Container>
+      <Container p="0" pt="sm">
         <Grid>
           <Grid.Col span={{ base: 12, xs: 6 }}>
             <Image

@@ -9,7 +9,7 @@ import {
   // IconSwitchHorizontal,
   // IconUser,
 } from '@tabler/icons-react';
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { Center, Image, Stack, Tooltip, UnstyledButton } from '@mantine/core';
 import Logo from '@src/favicon.png';
 import classes from './NavBar.module.css';
@@ -40,13 +40,13 @@ function NavbarLink({ icon: Icon, label, active, path }: NavbarLinkProps) {
 
 
 export function NavBar() {
-  const pathname = window.location.pathname;
+  const { pathname } = useLocation();
 
   const links = routes.map((link) => (
     <NavbarLink
       {...link}
       key={link.label}
-      active={pathname === link.path}
+      active={pathname.endsWith(link.path)}
       path={link.path}
     />
   ));
@@ -60,7 +60,7 @@ export function NavBar() {
       </Center>
 
       <div className={classes.navbarMain}>
-        <Stack justify="center" gap={0}>
+        <Stack justify="center" gap="6px">
           {links}
         </Stack>
       </div>

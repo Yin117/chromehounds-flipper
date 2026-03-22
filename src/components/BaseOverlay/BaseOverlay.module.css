@@ -4,4 +4,5 @@
     var(--mantine-color-black),
     transparent 40%
   );
+  padding: 12px;
 }
