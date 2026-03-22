@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   // IconCalendarStats,
   // IconDeviceDesktopAnalytics,
@@ -10,21 +9,25 @@ import {
   // IconSwitchHorizontal,
   // IconUser,
 } from '@tabler/icons-react';
-import { Stack, Tooltip, UnstyledButton } from '@mantine/core';
+import { NavLink, useNavigate } from "react-router";
+import { Center, Image, Stack, Tooltip, UnstyledButton } from '@mantine/core';
+import Logo from '@src/favicon.png';
 import classes from './NavBar.module.css';
+import { routes } from '@src/consts/routeConsts';
 
 interface NavbarLinkProps {
   icon: typeof IconHome2;
   label: string;
   active?: boolean;
-  onClick?: () => void;
+  path: string;
 }
 
-function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
+function NavbarLink({ icon: Icon, label, active, path }: NavbarLinkProps) {
   return (
     <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
       <UnstyledButton
-        onClick={onClick}
+        to={path}
+        component={NavLink}
         className={classes.link}
         data-active={active || undefined}
         aria-label={label}
@@ -35,34 +38,26 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
   );
 }
 
-const mockdata = [
-  { icon: IconHome2, label: 'Home' },
-  // { icon: IconGauge, label: 'Dashboard' },
-  // { icon: IconDeviceDesktopAnalytics, label: 'Analytics' },
-  // { icon: IconCalendarStats, label: 'Releases' },
-  // { icon: IconUser, label: 'Account' },
-  // { icon: IconFingerprint, label: 'Security' },
-  // { icon: IconSettings, label: 'Settings' },
-];
 
 export function NavBar() {
-  const [active, setActive] = useState(0);
+  const pathname = window.location.pathname;
 
-
-  const links = mockdata.map((link, index) => (
+  const links = routes.map((link) => (
     <NavbarLink
       {...link}
       key={link.label}
-      active={index === active}
-      onClick={() => setActive(index)}
+      active={pathname === link.path}
+      path={link.path}
     />
   ));
 
   return (
     <nav className={classes.navbar}>
-      {/* <Center>
-        <MantineLogo type="mark" size={30} />
-      </Center> */}
+      <Center>
+        <Image
+          src={Logo}
+        />
+      </Center>
 
       <div className={classes.navbarMain}>
         <Stack justify="center" gap={0}>

@@ -1,14 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { HomePage } from './pages/Home.page';
+import { routes } from '@src/consts/routeConsts';
 
-const BASE_URL = '/chromehounds-flipper/';
-
-const router = createBrowserRouter([
-  {
-    path: BASE_URL,
-    element: <HomePage />,
-  },
-]);
+const router = createBrowserRouter(routes);
 
 export function Router() {
   return <RouterProvider router={router} />;
