@@ -43,7 +43,7 @@ export type MobilityBase = Part & {
   rotationSpeed: number,
   shockAbsorption: number,
   stability: number,
-  ComCompatibility: number,
+  comCompatibility: number,
 }
 
 export type Cockpit = Part & {

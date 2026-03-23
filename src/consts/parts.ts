@@ -24,7 +24,7 @@ export const mobilityBase: MobilityBase[] = [
     rotationSpeed: 66,
     shockAbsorption: 175,
     stability: 126,
-    ComCompatibility: 120,
+    comCompatibility: 120,
   },
   {
     name: 'TL-Sal Kar',
