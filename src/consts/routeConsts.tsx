@@ -5,8 +5,8 @@ import {
   IconHome2,
   IconFile3d,
   IconLibraryPhoto,
-  // IconYoga, - rigging
-  // IconTexture - Color and Normal Maps
+  IconTexture,
+  // IconYoga, // - rigging
   // IconTimeline - Maybe for Workflows
 } from '@tabler/icons-react';
 import { Models3D } from '@src/components/Models3D/Models3D';
@@ -33,15 +33,15 @@ export const routes: Route[] = [
     element: <Models3D  />
   },
   {
+    icon: IconTexture,
+    path: `Textures`,
+    label: 'Textures',
+    element: <Models3D  />
+  },
+  {
     icon: IconLibraryPhoto,
     path: 'Photos',
     label: 'Photos',
     element: <Photos />
   }
-  // {
-  //   icon: IconFile3d,
-  //   path: `3dModels`,
-  //   label: '3D Models',
-  //   element: <Models3D  />
-  // }
 ]

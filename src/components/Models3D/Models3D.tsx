@@ -1,12 +1,8 @@
 import { Anchor, Box, Image, Text } from '@mantine/core';
-import { modelExtract } from '@src/consts/resourceConsts';
-import type { ReactNode } from 'react';
+import { modelExtract, xprParser } from '@src/consts/resourceConsts';
 import DragOntoMCFM from '@src/assets/images/3dModels/Drag_BND_onto_MCFM.png';
 import BlenderOutliner from '@src/assets/images/3dModels/Blender_Outliner.png';
-
-function Bolded({ children }: { children: ReactNode }) {
-  return <Text component="span" size="lg" c="#5ec4a2" fw={700}>{children}</Text>
-}
+import { Bolded } from '@src/components/Bolded/Bolded';
 
 export function Models3D() {
   return (
@@ -22,13 +18,20 @@ export function Models3D() {
         {' '}by {modelExtract.author}.
       </Text>
       <Text>
-        From this, you will be able to drag <Bolded>bnd</Bolded> files onto the exe,
+        From this, you will be able to drag <Bolded>BND</Bolded> files onto the exe,
         you can do this in bulk; it will write <Bolded>fbx</Bolded> files for each source file,
-        to a new folder.
+        to a folder based on the source file's name.
       </Text>
       <Image mah={270} maw={807} src={DragOntoMCFM} />
       <Text>
-        You can then easily import the resulting <Bolded>fbx</Bolded> files into Blender.
+        You can then easily import the resulting{' '}
+        <Bolded>fbx</Bolded> files into Blender.
+        Note some will also have extra files e.g.
+        CK_CB003<Bolded>_L02</Bolded> and
+        CK_CB003<Bolded>_L03</Bolded>; these
+        are "<Anchor href="https://en.wikipedia.org/wiki/Level_of_detail_(computer_graphics)" target="_blank">
+          Level of Detail
+        </Anchor>" files.
       </Text>
       <Text mt="sm">
         <Bolded>Note</Bolded>, the process will generate <Bolded>SMD</Bolded> and <Bolded>MDL</Bolded> files
@@ -39,7 +42,12 @@ export function Models3D() {
         The exception to this is e.g. Godot if you want to preview them without funky normals, but we recommend
         you do not use them for functional purposes in Godot; instead export from Blender.
       </Text>
-      <Text mt="lg">
+      <Text mt="sm">
+        The tool <Bolded>{xprParser.name}</Bolded> can be used to generate <Bolded>FBX</Bolded> files, but they do import broken; either bad meshes or UVs.
+        However, we can learn from importing these into Blender such as Shader properties like <Bolded>Roughness and IOR</Bolded> so we recommend do not use
+        {' '}{xprParser.name} parsed FBX files, but do reference their "meta data" in Blender for use on the better models from {modelExtract.name}.
+      </Text>
+      <Text mt="sm">
         You will notice that the models are <Bolded>HUGE</Bolded> you may want to
         scale either their Armature to e.g. <Bolded>0.00002</Bolded> (which will scale the Meshes)
         , or Meshes down to <Bolded>0.0015</Bolded>.

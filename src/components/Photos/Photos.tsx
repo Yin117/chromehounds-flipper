@@ -37,7 +37,7 @@ function filenameRefactored(filename?: string) {
   if (filename == undefined) {
     return "NO FILENAME FOUND";
   }
-  return filename.substring('image_'.length, filename.length - 8).split('_').join(' ');
+  return filename.substring('image_'.length, filename.length - 8);
 }
 
 type PhotoSets = 'Parts' | 'Characters' | 'Map Objects';
