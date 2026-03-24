@@ -35,7 +35,7 @@ export function Models3D() {
       </Text>
       <Text mt="sm">
         <Bolded>Note</Bolded>, the process will generate <Bolded>SMD</Bolded> and <Bolded>MDL</Bolded> files
-        the former have correct normals while the latter do not, however the <Bolded>MDL</Bolded> files
+        the SMD have correct normals while the MDL do not, however the <Bolded>MDL</Bolded> files
         include UVMaps and Rigging; and are therefore the superior format to work in if the choice exists.
       </Text>
       <Text mt="sm">

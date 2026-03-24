@@ -124,10 +124,32 @@ export type WeaponCategory = (typeof weaponCategories)[WeaponCategoryKey];
 /**
  * The majority of Weapon info comes from their ammo (if choices exist)
  */
-export type Weapons = Part & {
+type WeaponBase = Partial<Omit<Part, 'weight'> & {
   category: WeaponCategory,
   scope: Scope,
+  isHex?: boolean,
+}>;
+
+/**
+ * roundAmmoType is the 'penetrationPower'
+ */
+export type Weapon = WeaponBase & Partial<{
+  weight: number,
+  name: string,
+  maxAmmo: number,
+  roundAmmoType: AmmoType, // Penetration Power KE/CE
+  penetrationPower: number,
+  weaponAmmoType: string, // e.g. 'AP'
+  range: number,
+  heatOfImpact: number,
+  cost: number,
+  fullAuto: number,
+  reloadTime: number,
+}>
+
+export type WeaponMultiAmmo = WeaponBase & Partial<{
   ammoTypes: Array<{
+    weight: number,
     name: string,
     maxAmmo: number[], // [3, 8]
     weaponAmmoType: string, // e.g. 'APFSDS'
@@ -138,7 +160,7 @@ export type Weapons = Part & {
     fullAuto: number,
     reloadTime: number,
   }>,
-}
+}>
 
 export const spacerShapes = {
   Line: 'Line',
