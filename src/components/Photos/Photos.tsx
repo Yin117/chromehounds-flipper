@@ -1,7 +1,39 @@
-import { Box, Card, Image, NativeSelect, SimpleGrid, Stack, Text } from '@mantine/core';
+import { Box, Card, CloseButton, Image, Input, NativeSelect, SimpleGrid, Stack, Text } from '@mantine/core';
+import { partsArmor, partsCockpit, partsFuelTank, partsGenerator, partsHeatSink, partsHeavyArms, partsLightArms, partsMissileCounter, partsMobilityBase, partsMobilitySystemDevice, partsNaJammer, partsNaMaker, partsRotorcraft, partsSensor, partsSpacer, partsStabilitySystemDevice, partsWeaponSystemDevice } from '@src/consts/parts';
+import type { FactionKey } from '@src/consts/partTypes';
+import { getPartFlags } from '@src/helpers/partsHelper';
 import { useState } from 'react';
 // import { imagesParts } from '@src/consts/imageFiles';
 
+function reducePartsByImageName<T extends { imageName: string }>(list: T[]) {
+  return list.reduce((ac, cur) => {
+    if (ac[cur.imageName] == undefined) {
+      ac[cur.imageName] = [];
+    }
+    ac[cur.imageName].push(cur);
+    return ac;
+  }, {} as Record<string, T[]>);
+}
+
+const imageNameToParts = {
+  ...reducePartsByImageName(partsArmor),
+  ...reducePartsByImageName(partsMobilityBase),
+  ...reducePartsByImageName(partsCockpit),
+  ...reducePartsByImageName(partsFuelTank),
+  ...reducePartsByImageName(partsGenerator),
+  ...reducePartsByImageName(partsHeatSink),
+  ...reducePartsByImageName(partsHeavyArms),
+  ...reducePartsByImageName(partsLightArms),
+  ...reducePartsByImageName(partsMissileCounter),
+  ...reducePartsByImageName(partsMobilitySystemDevice),
+  ...reducePartsByImageName(partsNaJammer),
+  ...reducePartsByImageName(partsNaMaker),
+  ...reducePartsByImageName(partsRotorcraft),
+  ...reducePartsByImageName(partsSensor),
+  ...reducePartsByImageName(partsSpacer),
+  ...reducePartsByImageName(partsStabilitySystemDevice),
+  ...reducePartsByImageName(partsWeaponSystemDevice),
+}
 
 const imagesParts = import.meta.glob('@src/assets/images/Photos/Parts/**', { 
   eager: true, 
@@ -37,13 +69,24 @@ function filenameRefactored(filename?: string) {
   if (filename == undefined) {
     return "NO FILENAME FOUND";
   }
-  return filename.substring('image_'.length, filename.length - 8).split('_').join(' ');
+  return filename.substring('image_'.length, filename.length - 8);
 }
 
-type PhotoSets = 'Parts' | 'Characters' | 'Map Objects';
+const photoSets = ['Parts', 'Characters', 'Map Objects'] as const;
+type PhotoSet = typeof photoSets[number];
+
+const partTypes = ['Other', 'Mobility Base', 'Cockpit', 'Mobility System Device'
+ , 'Weapon System Device', 'Stability Device', 'Generator', 'Spacer'
+ , 'Sensor', 'Na Jammer', 'Missile Counter', 'Rotor Craft', 'Heat Sink'
+ , 'Fuel Tank', 'Armor', 'NA Maker', 'Weapon', 'Heavy Weapon'] as const;
+type PartType = typeof partTypes[number]
 
 export function Photos() {
-  const [photoSet, setPhotoSet] = useState<PhotoSets>('Parts')
+  const [photoSet, setPhotoSet] = useState<PhotoSet>('Parts');
+  const [partType, setPartType] = useState<PartType>('Mobility Base');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+
   return (
     <>
       <Text size="xl">
@@ -53,24 +96,123 @@ export function Photos() {
         Eventually there will be: more information, QOL, and search tools available.
       </Text>
       <NativeSelect
-        data={['Parts', 'Characters', 'Map Objects']}
+        data={photoSets}
         value={photoSet}
-        onChange={({ currentTarget: { value } }) => setPhotoSet(value as PhotoSets)}
+        onChange={({ currentTarget: { value } }) => setPhotoSet(value as PhotoSet)}
       />
-      <Box mah="70vh" style={{ overflowY: 'scroll' }}>
+      {photoSet === 'Parts' &&
+      <>
+        <NativeSelect
+          data={partTypes}
+          value={partType}
+          onChange={({ currentTarget: { value } }) => setPartType(value as PartType)}
+        />
+      </>}
+      <Input
+        placeholder="Search"
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.currentTarget.value)}
+        rightSectionPointerEvents="all"
+        rightSection={
+          <CloseButton
+            aria-label="Clear input"
+            onClick={() => setSearchTerm('')}
+            style={{ display: searchTerm ? undefined : 'none' }}
+          />
+        }
+      />
+      <Box mah="70vh" style={{ overflowY: 'scroll' }} mt="sm">
+
         {photoSet === 'Parts' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
           {imagesPartsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
-            const fileName = path.split('/').pop();
+            const filename = path.split('/').pop() ?? '';
+
+            const nonRafPart = (imageNameToParts[filename] ?? []).find(({ isRaf }) => isRaf !== true);
+            const rafPart = (imageNameToParts[filename] ?? []).find(({ isRaf }) => isRaf === true);
+
+            const partFlags = getPartFlags(nonRafPart);
+
+            if (filename.includes('CP_AS002')) {
+              console.log(filename, {
+                nonRafPart,
+                rafPart,
+                partFlags,
+              });
+            }
+
+            if (
+              (partType === 'Mobility Base' && partFlags.isMobilityBase) ||
+              (partType === 'Cockpit' && partFlags.isCockpit) ||
+              (partType === 'Mobility System Device' && partFlags.isMobilitySystemDevice) ||
+              (partType === 'Weapon System Device' && partFlags.isWeaponSystemDevice) ||
+              (partType === 'Stability Device' && partFlags.isStabilityDevice) ||
+              (partType === 'Generator' && partFlags.isGenerator) ||
+              (partType === 'Spacer' && partFlags.isSpacer) ||
+              (partType === 'Sensor' && partFlags.isSensor) ||
+              (partType === 'Na Jammer' && partFlags.isNaJammer) ||
+              (partType === 'Missile Counter' && partFlags.isMissileCounter) ||
+              (partType === 'Rotor Craft' && partFlags.isRotorCraft) ||
+              (partType === 'Heat Sink' && partFlags.isHeatSink) ||
+              (partType === 'Fuel Tank' && partFlags.isFuelTank) ||
+              (partType === 'Armor' && partFlags.isArmor) ||
+              (partType === 'NA Maker' && partFlags.isNaMaker) ||
+              (partType === 'Weapon' && partFlags.isWeapon) ||
+              (partType === 'Heavy Weapon' && partFlags.isWeaponHeavy)
+            ) {
+              // Keep going
+            } else {
+              if (partType === 'Other' && Object.values(partFlags).every(val => val !== true)) {
+                // Continue
+              } else {
+                return null;
+              }
+            }
+
+            const weaponCategory = nonRafPart && 'category' in nonRafPart
+              ? nonRafPart.category
+              : '';
+
+            const faction: FactionKey | undefined = nonRafPart && 'faction' in nonRafPart
+              ? nonRafPart.faction
+              : undefined;
+
+            if (searchTerm && nonRafPart) {
+              if (nonRafPart.name.toUpperCase().includes(searchTerm.toUpperCase()) === false) {
+                if (rafPart) {
+                  if (rafPart && rafPart?.name.toUpperCase().includes(searchTerm.toUpperCase()) === false) {
+                    return null;
+                  }
+                } else {
+                  return null;
+                }
+              }
+            }
 
             return (
-              <Card key={path} shadow="sm" padding="lg" radius="md" withBorder>
+              <Card
+                id={filename}
+                key={path}
+                shadow="sm"
+                padding="sm"
+                radius="md"
+                withBorder
+                style={{
+                  borderColor: faction === 'MSK'
+                    ? '#610202'
+                    : faction === 'SK'
+                      ? '#807700'
+                      : faction === 'TAK'
+                        ? '#065f75'
+                          : 'inherit',
+                }}
+              >
                 <Card.Section>
-                  <Stack align="center" justify="center" p="md">
+                  <Stack align="center" justify="center" p="sm">
                     <Image
                       src={url as string}
-                      alt={fileName}
+                      alt={filename}
                       fit="contain" // Ensures original proportions
                       h={200}       // Constraints the box height
                       w="auto"      // Keeps width natural
@@ -78,8 +220,20 @@ export function Photos() {
                   </Stack>
                 </Card.Section>
 
-                <Text fw={500} size="sm" mt="md" c="dimmed" ta="center">
-                  Part - {filenameRefactored(fileName)} ({idx + 1}/{imagesPartsList.length})
+                {nonRafPart &&
+                <Text fw={500} size="sm" c="dimmed" ta="center">
+                  {nonRafPart?.name ?? '???'}{
+                    rafPart != undefined
+                      ? ` and ${rafPart.name}`
+                      : ''
+                  }
+                </Text>}
+                {weaponCategory &&
+                <Text fw={500} size="sm" c="dimmed" ta="center">
+                  {weaponCategory}
+                </Text>}
+                <Text fw={500} size="sm" c="dimmed" ta="center">
+                  {filenameRefactored(filename)} ({idx + 1}/{imagesPartsList.length})
                 </Text>
               </Card>
             );
@@ -91,6 +245,13 @@ export function Photos() {
           {imagesMapObjsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
             const fileName = path.split('/').pop();
+
+            if (searchTerm && fileName) {
+              console.log('Check Part against Filename', { searchTerm, fileName })
+              if (fileName.toUpperCase().includes(searchTerm.toUpperCase()) === false) {
+                return null;
+              }
+            }
 
             return (
               <Card key={path} shadow="sm" padding="lg" radius="md" withBorder>
@@ -119,6 +280,13 @@ export function Photos() {
           {imagesCharsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
             const fileName = path.split('/').pop();
+
+            if (searchTerm && fileName) {
+              console.log('Check Part against Filename', { searchTerm, fileName })
+              if (fileName.toUpperCase().includes(searchTerm.toUpperCase()) === false) {
+                return null;
+              }
+            }
 
             return (
               <Card key={path} shadow="sm" padding="lg" radius="md" withBorder>
