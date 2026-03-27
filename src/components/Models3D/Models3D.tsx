@@ -1,4 +1,4 @@
-import { Anchor, Box, Image, Text } from '@mantine/core';
+import { Anchor, Image, Text } from '@mantine/core';
 import { modelExtract, xprParser } from '@src/consts/resourceConsts';
 import DragOntoMCFM from '@src/assets/images/3dModels/Drag_BND_onto_MCFM.png';
 import BlenderOutliner from '@src/assets/images/3dModels/Blender_Outliner.png';
