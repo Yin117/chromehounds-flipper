@@ -63,7 +63,7 @@ export const imagesParts = [
     "filename": "image_AX_FS031_smd.png"
   },
   {
-    "filename": "image_ax_fs032_smd.png"
+    "filename": "image_AX_FS032_smd.png"
   },
   {
     "filename": "image_AX_FS061_smd.png"

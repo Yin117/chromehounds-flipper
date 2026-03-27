@@ -72,8 +72,8 @@ function filenameRefactored(filename?: string) {
   return filename.substring('image_'.length, filename.length - 8);
 }
 
-const photoSets = ['Parts', 'Characters', 'Map Objects'] as const;
-type PhotoSet = typeof photoSets[number];
+const gallerySets = ['Parts', 'Characters', 'Map Objects'] as const;
+type GallerySet = typeof gallerySets[number];
 
 const partTypes = ['Other', 'Mobility Base', 'Cockpit', 'Mobility System Device'
  , 'Weapon System Device', 'Stability Device', 'Generator', 'Spacer'
@@ -81,8 +81,8 @@ const partTypes = ['Other', 'Mobility Base', 'Cockpit', 'Mobility System Device'
  , 'Fuel Tank', 'Armor', 'NA Maker', 'Weapon', 'Heavy Weapon'] as const;
 type PartType = typeof partTypes[number]
 
-export function Photos() {
-  const [photoSet, setPhotoSet] = useState<PhotoSet>('Parts');
+export function Gallery() {
+  const [gallerySet, setGallerySet] = useState<GallerySet>('Parts');
   const [partType, setPartType] = useState<PartType>('Mobility Base');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -90,17 +90,20 @@ export function Photos() {
   return (
     <>
       <Text size="xl">
-        Photos
+        Gallery
       </Text>
       <Text>
+        Here you can browse the different (core) 3D Models discoverable within the Chromehounds files.
+        These being Parts, Characters, and Map Objects; Map Terrain does exist but are too many
+        in number to present here.<br/>
         Eventually there will be: more information, QOL, and search tools available.
       </Text>
       <NativeSelect
-        data={photoSets}
-        value={photoSet}
-        onChange={({ currentTarget: { value } }) => setPhotoSet(value as PhotoSet)}
+        data={gallerySets}
+        value={gallerySet}
+        onChange={({ currentTarget: { value } }) => setGallerySet(value as GallerySet)}
       />
-      {photoSet === 'Parts' &&
+      {gallerySet === 'Parts' &&
       <>
         <NativeSelect
           data={partTypes}
@@ -123,7 +126,7 @@ export function Photos() {
       />
       <Box mah="70vh" style={{ overflowY: 'scroll' }} mt="sm">
 
-        {photoSet === 'Parts' &&
+        {gallerySet === 'Parts' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
           {imagesPartsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
@@ -240,7 +243,7 @@ export function Photos() {
           })}
         </SimpleGrid>}
 
-        {photoSet === 'Map Objects' &&
+        {gallerySet === 'Map Objects' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
           {imagesMapObjsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
@@ -275,7 +278,7 @@ export function Photos() {
           })}
         </SimpleGrid>}
 
-        {photoSet === 'Characters' &&
+        {gallerySet === 'Characters' &&
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
           {imagesCharsList.map(({ path, url }, idx) => {
             // Extract filename from path for the label/alt text
