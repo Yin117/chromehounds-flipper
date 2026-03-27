@@ -56,14 +56,12 @@ export function Models3D() {
         The values you use is upto you, and you should consider your use case and consistincy
         of the scaling for different models; so whatever you choose; note it down.
       </Text>
-      <Box display="flex" dir="row" mt="sm">
-        <Image maw={302} src={BlenderOutliner}/>
-        <Text ml="sm">
-          Some Models will import multiple meshes, you will need to scale each if you choose
-          Mesh scaling, and understand their elements; some are hydralics, others can be
-          shell ejection systems on guns, etc.
-        </Text>
-      </Box>
+      <Image mah="250px" maw="300px" fit="contain"  mt="sm" src={BlenderOutliner}/>
+      <Text>
+        Some Models will import multiple meshes, you will need to scale each if you choose
+        Mesh scaling, and understand their elements; some are hydralics, others can be
+        shell ejection systems on guns, etc.
+      </Text>
       <Text mt="sm">
         Additionally, they sometimes import with an "UnusedBonesMeshNode" as far as we have seen,
         you can safely delete this.

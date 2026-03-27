@@ -1,47 +1,52 @@
 
-import { HomePage } from '@src/pages/Home.page';
-import type { JSX } from 'react';
 import {
   IconHome2,
   IconFile3d,
   IconLibraryPhoto,
   IconTexture,
-  // IconYoga, // - rigging
+  IconYoga,
   // IconTimeline - Maybe for Workflows
 } from '@tabler/icons-react';
-import { Models3D } from '@src/components/Models3D/Models3D';
-import { Photos } from '@src/components/Photos/Photos';
 
 type Route = {
   icon: typeof IconHome2,
   path: string,
   label: string,
-  element: JSX.Element,
+  // element: JSX.Element,
 }
 
-export const routes: Route[] = [
-  {
+export const routesLookup = {
+  home: {
     icon: IconHome2,
     path: "Home",
     label: 'Home',
-    element: <HomePage />,
   },
-  {
+  models3d: {
     icon: IconFile3d,
     path: `3dModels`,
     label: '3D Models',
-    element: <Models3D  />
   },
-  {
+  textures: {
     icon: IconTexture,
     path: `Textures`,
     label: 'Textures',
-    element: <Models3D  />
   },
-  {
+  rigging: {
+    icon: IconYoga,
+    path: 'Rigging',
+    label: 'Rigging',
+  },
+  gallery: {
     icon: IconLibraryPhoto,
     path: 'Photos',
-    label: 'Photos',
-    element: <Photos />
-  }
+    label: 'Gallery',
+  },
+} as const satisfies Record<string, Route>;
+
+export const routes: Route[] = [
+  routesLookup.home,
+  routesLookup.models3d,
+  routesLookup.textures,
+  routesLookup.rigging,
+  routesLookup.gallery,
 ]
