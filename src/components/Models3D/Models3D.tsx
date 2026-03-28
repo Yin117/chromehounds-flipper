@@ -2,6 +2,7 @@ import { Anchor, Image, Text } from '@mantine/core';
 import { modelExtract, xprParser } from '@src/consts/resourceConsts';
 import DragOntoMCFM from '@src/assets/images/3dModels/Drag_BND_onto_MCFM.png';
 import BlenderOutliner from '@src/assets/images/3dModels/Blender_Outliner.png';
+import BlenderCustomNormalsData from '@src/assets/images/3dModels/Blender_CustomNormalsData.png';
 import { Bolded } from '@src/components/Bolded/Bolded';
 
 export function Models3D() {
@@ -56,14 +57,20 @@ export function Models3D() {
         The values you use is upto you, and you should consider your use case and consistincy
         of the scaling for different models; so whatever you choose; note it down.
       </Text>
-      <Image mah="250px" maw="300px" fit="contain"  mt="sm" src={BlenderOutliner}/>
+      <Image mah="250px" maw="300px" fit="contain" mt="sm" src={BlenderOutliner}/>
       <Text>
         Some Models will import multiple meshes, you will need to scale each if you choose
         Mesh scaling, and understand their elements; some are hydralics, others can be
         shell ejection systems on guns, etc.
       </Text>
+      <Text mt="md">
+        If when using in Godot you find that <Bolded>lighting</Bolded> acts in reverse; illuminating the farside of the models, you need to
+        clear the <Bolded>Clear Custom Normals Data</Bolded>.
+        <br/>You do not need to do this to every vertex group, just ever Mesh (Object) in the Outliner (orange reversed triangle).
+      </Text>
+      <Image mah="250px" maw="300px" fit="contain" mt="sm" src={BlenderCustomNormalsData}/>
       <Text mt="sm">
-        Additionally, they sometimes import with an "UnusedBonesMeshNode" as far as we have seen,
+        They typically sometimes import with an "UnusedBonesMeshNode" as far as we have seen,
         you can safely delete this.
       </Text>
     </>
