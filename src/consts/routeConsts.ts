@@ -5,6 +5,7 @@ import {
   IconLibraryPhoto,
   IconTexture,
   IconYoga,
+  IconVolume2,
   // IconTimeline - Maybe for Workflows
 } from '@tabler/icons-react';
 
@@ -36,6 +37,11 @@ export const routesLookup = {
     path: 'Rigging',
     label: 'Rigging',
   },
+  audio: {
+    icon: IconVolume2,
+    path: 'Audio',
+    label: 'Audio',
+  },
   gallery: {
     icon: IconLibraryPhoto,
     path: 'Photos',
@@ -48,5 +54,6 @@ export const routes: Route[] = [
   routesLookup.models3d,
   routesLookup.textures,
   routesLookup.rigging,
+  routesLookup.audio,
   routesLookup.gallery,
 ]

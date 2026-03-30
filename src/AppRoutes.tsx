@@ -1,11 +1,12 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import AppLayout from './AppLayout';
-import { HomePage } from './pages/Home.page';
-import { Models3D } from './components/Models3D/Models3D';
 import { Title } from '@mantine/core';
-import { Gallery } from './components/Gallery/Gallery';
-import { Textures } from './components/Textures/Textures';
-import { Rigging } from './components/Rigging/Rigging';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import AppLayout from '@src/AppLayout';
+import { HomePage } from '@src/pages/Home.page';
+import { Models3D } from '@src/components/Models3D/Models3D';
+import { Gallery } from '@src/components/Gallery/Gallery';
+import { Textures } from '@src/components/Textures/Textures';
+import { Rigging } from '@src/components/Rigging/Rigging';
+import { Audio } from '@src/components/AudioExtract/Audio';
 
 export function App() {
   return (
@@ -21,6 +22,7 @@ export function App() {
           <Route path="Textures" element={<Textures />} />
           <Route path="Rigging" element={<Rigging />} />
           <Route path="Photos" element={<Gallery />} />
+          <Route path="Audio" element={<Audio />} />
         </Route>
       </Routes>
     </HashRouter>
