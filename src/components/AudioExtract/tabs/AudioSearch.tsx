@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Avatar, Box, Button, Card, Chip, Collapse, Flex, Group, RangeSlider, SimpleGrid, Stack, Text, TextInput } from '@mantine/core';
+import { Avatar, Box, Button, Chip, Collapse, Flex, Group, RangeSlider, SimpleGrid, Text, TextInput } from '@mantine/core';
 import {
   longestFile,
   sound_CH_WaveBank_SE,
