@@ -6,6 +6,17 @@ export type SoundFileDetails = {
   filesize: number,
 }
 
+const ignoreWords = [
+  '',
+  'OR',
+  'THE',
+  'AND',
+  'BUT',
+  '4',
+  '5',
+  '01',
+].map(term => term.toUpperCase());
+
 export const sound_CH_WaveBank_SE: SoundFileDetails[] = [
   {
     "filename": "00000000",
@@ -2792,9 +2803,8 @@ export const sound_CH_WaveBank_SE: SoundFileDetails[] = [
     "searchWords": [
       "UI",
       "Zwip",
-      "Unknown",
-      "But",
-      "Familuar"
+      "Comms",
+      "Confirmation"
     ],
     "durationS": 0.536,
     "filesize": 47306
@@ -3473,7 +3483,19 @@ export const sound_CH_WaveBank_SE: SoundFileDetails[] = [
     "durationS": 3.715,
     "filesize": 327724
   }
-];
+]
+.map(sound => {
+  // sound.searchWords = sound.searchWords.filter(word =>
+  //   ignoreWords.some(ignore => ignore === word.toUpperCase()) === false
+  // );
+  sound.searchWords = sound.searchWords.map(word => {
+    if (word.toUpperCase() === 'MB') {
+      return 'Maybe';
+    }
+    return word;
+  });
+  return sound;
+})
 
 export const longestFile = sound_CH_WaveBank_SE.reduce((ac, cur) => {
   if (ac.durationS < cur.durationS) {
@@ -3481,13 +3503,15 @@ export const longestFile = sound_CH_WaveBank_SE.reduce((ac, cur) => {
   }
   return ac;
 }, sound_CH_WaveBank_SE[0]);
-console.log('longestFile', longestFile);
 
 function getAllSearchWords(files: SoundFileDetails[]): string[] {
   const allWords = {} as Record<string, boolean>;
   for (const { searchWords } of files) {
     for (const wordCased of searchWords) {
       const word = wordCased.toUpperCase();
+      if (ignoreWords.some(ignore => ignore === word)) {
+        continue;
+      }
       if (allWords[word] == undefined) {
         allWords[word] = true;
       }

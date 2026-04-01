@@ -20,7 +20,12 @@ export function SoundFile({ sound }: Props) {
                 color={copied ? 'teal' : 'blue'}
                 onClick={copy}
               >
-                {copied ? "Copied to Clipboard" : sound.filename}
+                {copied
+                  ? "Copied to Clipboard"
+                  : sound.filename === "00000000"
+                    ? "0"
+                    : sound.filename.replace(/^0+/, '')
+                }
               </Button>
             )}
           </CopyButton>
@@ -28,12 +33,12 @@ export function SoundFile({ sound }: Props) {
       </Card.Section>
 
       <Text mb="md">
-        {sound.searchWords.join(' • ')}
+        "{sound.searchWords.join(' ')}"
       </Text>
 
       <Group mt="auto" justify="space-between">
         <Text size="sm">
-          ({(sound.filesize / 1_024).toFixed()}KB)
+          {(sound.filesize / 1_024).toFixed()}KB
         </Text>
 
         <Text>

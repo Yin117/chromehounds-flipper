@@ -58,6 +58,10 @@ export function AudioSearch() {
 
   return (
     <>
+      <Text mt="sm" mb="sm">
+        All files have been arbitrary described/categorized by a single individual,
+        take them with a pinch of subjective intepretation
+      </Text>
       <TextInput
         value={searchTerm}
         onChange={({ target: { value }}) => setSearchTerm(value)}
@@ -110,7 +114,13 @@ export function AudioSearch() {
             return (
               <React.Fragment key={word}>
                 {isShowLetter &&
-                <Avatar color="cyan" radius="xl">{word.toUpperCase().substring(0, 1)}</Avatar>}
+                <Avatar
+                  color="cyan"
+                  radius="xl"
+                >
+                    {word.toUpperCase().substring(0, 1)}
+                </Avatar>
+                }
                 <Chip
                   checked={searchWords.get(word.toUpperCase())}
                   onChange={() => {
