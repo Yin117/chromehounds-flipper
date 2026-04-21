@@ -50,11 +50,12 @@ export function Models3D() {
       </Text>
       <Text mt="sm">
         You will notice that the models are <Bolded>HUGE</Bolded> you may want to
-        scale either their Armature to e.g. <Bolded>0.00002</Bolded> (which will scale the Meshes)
-        , or Meshes down to <Bolded>0.0015</Bolded>.
+        scale them down, the best way to do this is to <Bolded>Apply Scale</Bolded> to the Armature,
+        and then the Meshes (as they will then re-scale due to the change to the Armature).
+        Then, to achieve a Blender (and Godot) scale that is near, if not perfect dimentions; scale the meshes by <Bolded>0.0063</Bolded>.
       </Text>
-      <Text>
-        The values you use is upto you, and you should consider your use case and consistincy
+      <Text mt="sm">
+        Ultimatly, the values you use is upto you, and you should consider your use case and consistincy
         of the scaling for different models; so whatever you choose; note it down.
       </Text>
       <Image mah="250px" maw="300px" fit="contain" mt="sm" src={BlenderOutliner}/>
