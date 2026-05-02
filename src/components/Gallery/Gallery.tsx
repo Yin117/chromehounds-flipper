@@ -137,11 +137,13 @@ export function Gallery() {
 
             const partFlags = getPartFlags(nonRafPart);
 
-            if (filename.includes('CP_AS002')) {
+            if (filename.includes('LG_RJ001')) {
               console.log(filename, {
                 nonRafPart,
                 rafPart,
                 partFlags,
+                imageNameToParts_filename: imageNameToParts[filename],
+                imageNameToParts,
               });
             }
 
@@ -198,7 +200,6 @@ export function Gallery() {
                 id={filename}
                 key={path}
                 shadow="sm"
-                padding="sm"
                 radius="md"
                 withBorder
                 style={{
@@ -212,13 +213,13 @@ export function Gallery() {
                 }}
               >
                 <Card.Section>
-                  <Stack align="center" justify="center" p="sm">
+                  <Stack align="center" justify="center">
                     <Image
                       src={url as string}
                       alt={filename}
-                      fit="contain" // Ensures original proportions
-                      h={200}       // Constraints the box height
-                      w="auto"      // Keeps width natural
+                      fit="scale-down"
+                      h={200}
+                      w={200}
                     />
                   </Stack>
                 </Card.Section>

@@ -36,6 +36,13 @@ export function Rigging() {
         However, they are all pointing upwards, there is a <Bolded>nice easy trick</Bolded> to fix this, although it is manual.
       </Text>
       <Text mt="sm">
+        <Bolded>WARNING!</Bolded> some of the bones are SUPER TINY, consider how to make these bigger without moving <Bolded>Head</Bolded> bone
+        (shown below) as this may impact pivot/rotating with these bones.
+      </Text>
+      <Text>
+        The best way to find these bones is by stepping through the <Bolded>Armature's bone tree and looking for ones that don't cause a bone to highlight.</Bolded>
+      </Text>
+      <Text mt="sm">
         First select the {head} of the bone, you want the preceeding bone's {tail} to move to, then open the <Bolded>Snap Shortcuts</Bolded>
         {' '}(in my Blender that is SHIFT+S) and select <Bolded>Cursor to Selected</Bolded>.
       </Text>

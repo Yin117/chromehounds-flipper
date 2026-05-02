@@ -522,7 +522,7 @@ export const imagesParts = [
     "filename": "image_GE_GC063_smd.png"
   },
   {
-    "filename": "image_LG_CL001_smd.png"
+    "filename": "image_LG_CL001_mdl.png"
   },
   {
     "filename": "image_LG_CL002_smd.png"
@@ -606,7 +606,7 @@ export const imagesParts = [
     "filename": "image_LG_ML900_smd.png"
   },
   {
-    "filename": "image_LG_RJ001_smd.png"
+    "filename": "image_LG_RJ001_mdl.png"
   },
   {
     "filename": "image_LG_RJ002_smd.png"

@@ -1,6 +1,6 @@
 import { factions, mobilityType, scopes, sensorTypes, weaponCategories, type Armor, type Cockpit, type FactionKey, type FuelTank, type Generator, type HeatSink, type MissileCounter, type MobilityBase, type MobilitySystemDevice, type NaJammer, type NaMaker, type Rotorcraft, type Sensor, type Spacer, type StabilitySystemDevice, type Weapon, type WeaponMultiAmmo, type WeaponSystemDevice } from "./partTypes";
 
-function getImageName(filename: string, meshType = 'smd') {
+function getImageName(filename: string, meshType: string = 'smd') {
   return `image_${filename}_${meshType}.png`
 }
 
@@ -340,7 +340,7 @@ export const partsMobilityBase: MobilityBase[] = [
   },
   {
     name: 'M01RJ Burns',
-    imageName: getImageName('LG_RJ001'),
+    imageName: getImageName('LG_RJ001', 'mdl'),
     filename: 'LG_RJ001',
     faction: factions.TAK,
     type: mobilityType.Inverse,
@@ -361,7 +361,7 @@ export const partsMobilityBase: MobilityBase[] = [
   },
   {
     name: 'RFZ-RJ-1',
-    imageName: getImageName('LG_RJ001'),
+    imageName: getImageName('LG_RJ001', 'mdl'),
     filename: 'LG_RJ001',
     faction: factions.TAK,
     isRaf: true,
@@ -765,7 +765,7 @@ export const partsMobilityBase: MobilityBase[] = [
   },
   {
     name: 'M05CL Custer',
-    imageName: getImageName('LG_CL001'),
+    imageName: getImageName('LG_CL001', 'mdl'),
     filename: 'LG_CL001',
     faction: factions.TAK,
     type: mobilityType.Treaded,
@@ -786,7 +786,7 @@ export const partsMobilityBase: MobilityBase[] = [
   },
   {
     name: 'RFZ-CL-1',
-    imageName: getImageName('LG_CL001'),
+    imageName: getImageName('LG_CL001', 'mdl'),
     filename: 'LG_CL001',
     faction: factions.TAK,
     isRaf: true,
