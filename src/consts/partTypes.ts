@@ -89,6 +89,14 @@ export type NaMaker = Part & {
 
 export type AmmoType = 'KE' | 'CE';
 
+export const weaponAmmoTypes = {
+  AP: 'AP',
+  Grenade: 'Grenade',
+  Heat: 'HEAT',
+} as const;
+export type WeaponAmmoTypeKey = keyof typeof weaponAmmoTypes;
+export type WeaponAmmoType = (typeof weaponAmmoTypes)[WeaponAmmoTypeKey];
+
 export const scopes = {
   Normal: 'Normal',
   HighAngle: 'High-Angle',
@@ -133,23 +141,22 @@ type WeaponBase = Partial<Omit<Part, 'weight'> & {
 /**
  * roundAmmoType is the 'penetrationPower'
  */
-export type Weapon = WeaponBase & Partial<{
-  weight: number,
+export type Weapon = WeaponBase & {
+  weight: number[],
   name: string,
-  maxAmmo: number,
+  maxAmmo: number[],
   roundAmmoType: AmmoType, // Penetration Power KE/CE
   penetrationPower: number,
-  weaponAmmoType: string, // e.g. 'AP'
+  weaponAmmoType: WeaponAmmoType,
   range: number,
   heatOfImpact: number,
   cost: number,
   fullAuto: number,
   reloadTime: number,
-}>
+}
 
-export type WeaponMultiAmmo = WeaponBase & Partial<{
-  ammoTypes: Array<{
-    weight: number,
+export type MultiAmmo = {
+    weight: number[],
     name: string,
     maxAmmo: number[], // [3, 8]
     weaponAmmoType: string, // e.g. 'APFSDS'
@@ -159,8 +166,10 @@ export type WeaponMultiAmmo = WeaponBase & Partial<{
     cost: number,
     fullAuto: number,
     reloadTime: number,
-  }>,
-}>
+}
+export type WeaponMultiAmmo = WeaponBase & {
+  ammoTypes: MultiAmmo[],
+}
 
 export const spacerShapes = {
   Line: 'Line', // 2 connections
