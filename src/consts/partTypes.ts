@@ -77,7 +77,7 @@ export type StabilitySystemDevice = SystemDevice & {
   rotationBoost: number,
 }
 
-export type Generator = Part & {
+export type Generator = Omit<Part, 'energyUse'> & {
   energyOutput: number,
   fuelCapacity: number,
   heatGeneration: number,
@@ -163,12 +163,12 @@ export type WeaponMultiAmmo = WeaponBase & Partial<{
 }>
 
 export const spacerShapes = {
-  Line: 'Line',
-  Cuboid: 'Cuboid',
-  Tee: 'Tee',
-  Diagonal: 'Diagonal',
-  Angle: 'Angle',
-  Bend: 'Bend',
+  Line: 'Line', // 2 connections
+  Cuboid: 'Cuboid', // 6 connections
+  Tee: 'Tee', // 4 connections
+  Diagonal: 'Diagonal', // 2 connections
+  Elbow: 'Elbow', // 4 connections
+  Vee: 'Vee', // 3 connections
 } as const;
 export type SpacerShapeKey = keyof typeof spacerShapes;
 export type SpacerShape = (typeof spacerShapes)[SpacerShapeKey];
