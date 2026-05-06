@@ -87,12 +87,19 @@ export type NaMaker = Part & {
   networkRange: number,
 }
 
-export type AmmoType = 'KE' | 'CE';
+export type AmmoType = 'KE' | 'CE' | 'HE';
 
 export const weaponAmmoTypes = {
   AP: 'AP',
   Grenade: 'Grenade',
   Heat: 'HEAT',
+  Rocket: 'ROCKET',
+  Pile: 'PILE',
+  Illuminating: 'ILLUMINATING',
+  Mine: 'MINE',
+  Bomb: 'BOMB',
+  He: 'HE',
+  Incendiary: 'INCENDIARY',
 } as const;
 export type WeaponAmmoTypeKey = keyof typeof weaponAmmoTypes;
 export type WeaponAmmoType = (typeof weaponAmmoTypes)[WeaponAmmoTypeKey];
@@ -132,40 +139,41 @@ export type WeaponCategory = (typeof weaponCategories)[WeaponCategoryKey];
 /**
  * The majority of Weapon info comes from their ammo (if choices exist)
  */
-type WeaponBase = Partial<Omit<Part, 'weight'> & {
+type WeaponBase = Omit<Part, 'weight'> & {
   category: WeaponCategory,
   scope: Scope,
   isHex?: boolean,
-}>;
+  weight: number[],
+  maxAmmo: number[],
+  fullAuto: number,
+  reloadTime: number,
+};
 
 /**
  * roundAmmoType is the 'penetrationPower'
  */
 export type Weapon = WeaponBase & {
-  weight: number[],
   name: string,
-  maxAmmo: number[],
+  ammoName?: string,
+  description?: string,
+  ammoDescription?: string,
   roundAmmoType: AmmoType, // Penetration Power KE/CE
   penetrationPower: number,
   weaponAmmoType: WeaponAmmoType,
   range: number,
   heatOfImpact: number,
   cost: number,
-  fullAuto: number,
-  reloadTime: number,
 }
 
 export type MultiAmmo = {
-    weight: number[],
-    name: string,
-    maxAmmo: number[], // [3, 8]
-    weaponAmmoType: string, // e.g. 'APFSDS'
-    roundAmmoType: AmmoType,
-    range: number,
-    heatOfImpact: number,
-    cost: number,
-    fullAuto: number,
-    reloadTime: number,
+  name: string,
+  description?: string,
+  penetrationPower: number,
+  weaponAmmoType: string, // e.g. 'APFSDS'
+  roundAmmoType: AmmoType,
+  range: number,
+  heatOfImpact: number,
+  cost: number,
 }
 export type WeaponMultiAmmo = WeaponBase & {
   ammoTypes: MultiAmmo[],
