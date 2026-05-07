@@ -101,6 +101,7 @@ export const weaponAmmoTypes = {
   He: 'HE',
   Smoke: 'SMOKE',
   Incendiary: 'INCENDIARY',
+  Missile: 'MISSILE',
 } as const;
 export type WeaponAmmoTypeKey = keyof typeof weaponAmmoTypes;
 export type WeaponAmmoType = (typeof weaponAmmoTypes)[WeaponAmmoTypeKey];
@@ -140,12 +141,12 @@ export type WeaponCategory = (typeof weaponCategories)[WeaponCategoryKey];
 /**
  * The majority of Weapon info comes from their ammo (if choices exist)
  */
-type WeaponBase = Omit<Part, 'weight'> & {
+type WeaponBase<WM = number[]> = Omit<Part, 'weight'> & {
   category: WeaponCategory,
   scope: Scope,
   isHex?: boolean,
-  weight: number[],
-  maxAmmo: number[],
+  weight: WM,
+  maxAmmo: WM,
   fullAuto: number,
   reloadTime: number,
 };
@@ -153,7 +154,7 @@ type WeaponBase = Omit<Part, 'weight'> & {
 /**
  * roundAmmoType is the 'penetrationPower'
  */
-export type Weapon = WeaponBase & {
+export type Weapon<WM = number[]> = WeaponBase<WM> & {
   name: string,
   ammoName?: string,
   description?: string,
@@ -176,7 +177,11 @@ export type MultiAmmo = {
   heatOfImpact: number,
   cost: number,
 }
-export type WeaponMultiAmmo = WeaponBase & {
+export type WeaponMultiAmmoQty = WeaponBase & {
+  ammoTypes: MultiAmmo[],
+}
+
+export type WeaponMultiAmmo = WeaponBase<number> & {
   ammoTypes: MultiAmmo[],
 }
 
