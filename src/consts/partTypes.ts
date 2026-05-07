@@ -99,6 +99,7 @@ export const weaponAmmoTypes = {
   Mine: 'MINE',
   Bomb: 'BOMB',
   He: 'HE',
+  Smoke: 'SMOKE',
   Incendiary: 'INCENDIARY',
 } as const;
 export type WeaponAmmoTypeKey = keyof typeof weaponAmmoTypes;

@@ -7020,7 +7020,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
     ammoTypes: [
       {
         name: "Smoke",
-        weaponAmmoType: "SMOKE",
+        weaponAmmoType: weaponAmmoTypes.Smoke,
         description: 'Smoke Grenade\nCreates smokescreen upon impact.',
         penetrationPower: 120,
         roundAmmoType: "KE",
@@ -7030,7 +7030,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Illuminating",
-        weaponAmmoType: "ILLUMINATING",
+        weaponAmmoType: weaponAmmoTypes.Illuminating,
         description: 'Flare\nExplodes after firing to create a light source.',
         penetrationPower: 120,
         roundAmmoType: "KE",
@@ -7058,7 +7058,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
     ammoTypes: [
       {
         name: "Smoke",
-        weaponAmmoType: "SMOKE",
+        weaponAmmoType: weaponAmmoTypes.Smoke,
         description: 'Smoke Grenade\nCreates smokescreen upon impact.',
         penetrationPower: 120,
         roundAmmoType: "KE",
@@ -7068,7 +7068,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Illuminating",
-        weaponAmmoType: "ILLUMINATING",
+        weaponAmmoType: weaponAmmoTypes.Illuminating,
         description: 'Flare\nExplodes after firing to create a light source.',
         penetrationPower: 120,
         roundAmmoType: "KE",
@@ -7096,7 +7096,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
     ammoTypes: [
       {
         name: "Smoke",
-        weaponAmmoType: "SMOKE",
+        weaponAmmoType: weaponAmmoTypes.Smoke,
         description: 'Smoke Grenade\nCreates smokescreen upon impact.',
         penetrationPower: 150,
         roundAmmoType: "KE",
@@ -7106,7 +7106,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Illuminating",
-        weaponAmmoType: "ILLUMINATING",
+        weaponAmmoType: weaponAmmoTypes.Illuminating,
         description: 'Flare\nExplodes after firing to create a light source.',
         penetrationPower: 150,
         roundAmmoType: "KE",
@@ -7180,7 +7180,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
     ammoTypes: [
       {
         name: "HE160-40",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'All-Purpose HE\nExplosion causes splash damage.',
         penetrationPower: 460,
         roundAmmoType: "KE",
@@ -7190,7 +7190,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "HE160-60",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'Enhanced HE\nDifferent compound, greater explosive power.',
         penetrationPower: 520,
         roundAmmoType: "KE",
@@ -7200,7 +7200,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "HE160-90",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'Wide-Area HE\nHeavy recoil, but has greater blast radius.',
         penetrationPower: 410,
         roundAmmoType: "KE",
@@ -7210,7 +7210,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Incendiary-160",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.Incendiary,
         description: 'All-Purpose Incendiary\nSpreads chemical agent to burn.',
         penetrationPower: 336,
         roundAmmoType: "KE",
@@ -7220,7 +7220,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Incendiary-160N",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.Incendiary,
         description: 'Very High Temp Incendiary\nDiff material for high temp.',
         penetrationPower: 336,
         roundAmmoType: "KE",
@@ -7248,7 +7248,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
     ammoTypes: [
       {
         name: "HE160-40",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'All-Purpose HE\nExplosion causes splash damage.',
         penetrationPower: 460,
         roundAmmoType: "KE",
@@ -7258,7 +7258,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "HE160-60",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'Enhanced HE\nDifferent compound, greater explosive power.',
         penetrationPower: 520,
         roundAmmoType: "KE",
@@ -7268,7 +7268,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "HE160-90",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'Wide-Area HE\nHeavy recoil, but has greater blast radius.',
         penetrationPower: 410,
         roundAmmoType: "KE",
@@ -7278,7 +7278,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Incendiary-160",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.Incendiary,
         description: 'All-Purpose Incendiary\nSpreads chemical agent to burn.',
         penetrationPower: 336,
         roundAmmoType: "KE",
@@ -7288,7 +7288,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Incendiary-160N",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.Incendiary,
         description: 'Very High Temp Incendiary\nDiff material for high temp.',
         penetrationPower: 336,
         roundAmmoType: "KE",
@@ -7316,7 +7316,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
     ammoTypes: [
       {
         name: "HE160-40",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'All-Purpose HE\nExplosion causes splash damage.',
         penetrationPower: 460,
         roundAmmoType: "KE",
@@ -7326,7 +7326,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "HE160-60",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'Enhanced HE\nDifferent compound, greater explosive power.',
         penetrationPower: 520,
         roundAmmoType: "KE",
@@ -7336,7 +7336,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "HE160-90",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.He,
         description: 'Wide-Area HE\nHeavy recoil, but has greater blast radius.',
         penetrationPower: 410,
         roundAmmoType: "KE",
@@ -7346,7 +7346,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Incendiary-160",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.Incendiary,
         description: 'All-Purpose Incendiary\nSpreads chemical agent to burn.',
         penetrationPower: 336,
         roundAmmoType: "KE",
@@ -7356,7 +7356,7 @@ export const partsLightArms: (Weapon | WeaponMultiAmmo)[] = [
       },
       {
         name: "Incendiary-160N",
-        weaponAmmoType: "KE",
+        weaponAmmoType: weaponAmmoTypes.Incendiary,
         description: 'Very High Temp Incendiary\nDiff material for high temp.',
         penetrationPower: 336,
         roundAmmoType: "KE",
