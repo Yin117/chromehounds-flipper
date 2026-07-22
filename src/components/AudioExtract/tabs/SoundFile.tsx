@@ -45,6 +45,10 @@ export function SoundFile({ sound, waveform }: Props) {
         h="100"
       />
 
+      <Text display="none">
+        {waveform}
+      </Text>
+
       <Group mt="auto" justify="space-between">
         <Text size="sm">
           {(sound.filesize / 1_024).toFixed()}KB

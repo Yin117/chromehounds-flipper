@@ -9,7 +9,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { SoundFile } from './SoundFile';
 import { getObjectEntries } from '@src/helpers/typescriptHelper';
 
-const imagesSoundEffects = import.meta.glob('@src/assets/images/waveforms/se/**', { 
+const imagesSoundEffects = import.meta.glob('@src/assets/images/AudioWaveforms/se/**', { 
   eager: true,
   import: 'default'
 });
@@ -20,7 +20,6 @@ const imagesSoundEffectsReduced = getObjectEntries(imagesSoundEffects)
     ac[filename.split('.')[0]] = url as string;
     return ac;
   }, {} as Record<string, string>);
-console.log('imagesSoundEffectsReduced', imagesSoundEffectsReduced);
 
 export function AudioSearch() {
 
