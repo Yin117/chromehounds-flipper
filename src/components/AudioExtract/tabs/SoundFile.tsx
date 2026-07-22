@@ -1,11 +1,12 @@
-import { Button, Card, CopyButton, Group, Stack, Text } from "@mantine/core";
+import { Button, Card, CopyButton, Group, Stack, Text, Image } from "@mantine/core";
 import type { SoundFileDetails } from "@src/consts/audioFiles";
 
 type Props = {
   sound: SoundFileDetails,
+  waveform: string,
 }
 
-export function SoundFile({ sound }: Props) {
+export function SoundFile({ sound, waveform }: Props) {
   return (
     <Card
       key={sound.filename}
@@ -32,9 +33,17 @@ export function SoundFile({ sound }: Props) {
         </Stack>
       </Card.Section>
 
-      <Text mb="md">
+      <Text mb="md" style={{ minHeight: '60px' }}>
         "{sound.searchWords.join(' ')}"
       </Text>
+
+      <Image
+        src={waveform}
+        alt={`${sound.filename} Waveform`}
+        fit="contain"
+        w="auto"
+        h="100"
+      />
 
       <Group mt="auto" justify="space-between">
         <Text size="sm">

@@ -36,7 +36,7 @@ const imageNameToParts = {
 }
 
 const imagesParts = import.meta.glob('@src/assets/images/Photos/Parts/**', { 
-  eager: true, 
+  eager: true,
   import: 'default'
 });
 const imagesPartsList = Object.entries(imagesParts).map(([path, url]) => ({

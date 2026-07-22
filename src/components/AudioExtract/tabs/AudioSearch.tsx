@@ -7,7 +7,20 @@ import {
 } from '@src/consts/audioFiles';
 import { useDisclosure } from '@mantine/hooks';
 import { SoundFile } from './SoundFile';
+import { getObjectEntries } from '@src/helpers/typescriptHelper';
 
+const imagesSoundEffects = import.meta.glob('@src/assets/images/waveforms/se/**', { 
+  eager: true,
+  import: 'default'
+});
+
+const imagesSoundEffectsReduced = getObjectEntries(imagesSoundEffects)
+  .reduce((ac, [path, url]) => {
+    const filename = path.split('/').pop() ?? '';
+    ac[filename.split('.')[0]] = url as string;
+    return ac;
+  }, {} as Record<string, string>);
+console.log('imagesSoundEffectsReduced', imagesSoundEffectsReduced);
 
 export function AudioSearch() {
 
@@ -56,6 +69,8 @@ export function AudioSearch() {
     })
   }, [searchTerm, searchWords, durMin, durMax, maxDuration]);
 
+  console.log('searchWords', searchWords)
+
   return (
     <>
       <Text mt="sm" mb="sm">
@@ -96,7 +111,7 @@ export function AudioSearch() {
 
       <Collapse in={searchWordsExpanded}>
         <Text mt="sm">
-          This search is an 'OR' check not an 'AND' check.
+          This search is an 'OR' check, not an 'AND' check.
         </Text>
         <Flex
           display="flex"
@@ -137,12 +152,47 @@ export function AudioSearch() {
         </Flex>
       </Collapse>
 
+      <Flex
+        display="flex"
+        dir="row"
+        mah="50vh"
+        mt="sm"
+        wrap="wrap"
+        gap="sm"
+        align="center"
+        style={{ overflowY: 'scroll' }}
+      >
+        {
+          [...searchWords.entries()].map(([word, isActive]) => {
+            if (isActive !== true) {
+              return null;
+            }
+            return (
+              <Chip
+                checked
+                onChange={() => {
+                  const draft = new Map(searchWords);
+                  draft.set(word.toUpperCase(), false)
+                  setSearchWords(draft);
+                }}
+              >
+                {word}
+              </Chip>
+            )
+          })
+        }
+      </Flex>
+
       
       <Box mah="60vh" style={{ overflowY: 'scroll' }} mt="sm">
         <SimpleGrid cols={{ base: 1, sm: 2, lg: 4, xl: 5 }} spacing="md">
           {soundFilesFiltered.map(sound => {
             return (
-              <SoundFile key={sound.filename} sound={sound}/>
+              <SoundFile
+                key={sound.filename}
+                sound={sound}
+                waveform={imagesSoundEffectsReduced[sound.filename]}
+              />
             )
           })}
         </SimpleGrid>

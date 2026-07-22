@@ -5,3 +5,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+
+.fontSize_xxSmall {
+  font-size: xx-small;
+}
+.fontSize_medium {
+  font-size: medium;
+}

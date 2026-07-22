@@ -3,6 +3,7 @@ import Model3D from '@src/assets/images/Model3D.png';
 import Rigging from '@src/assets/images/Rigging.png';
 import Textures from '@src/assets/images/Textures.png';
 import UVMap from '@src/assets/images/UVMap.png';
+import { Bolded } from '../Bolded/Bolded';
 
 // const child = <Skeleton height={140} radius="md" animate={false} />;
 
@@ -15,6 +16,11 @@ export function Welcome() {
       <Text>
         It is expected that you have the Open Combas project setup and working, from this you'll have access to various folders
         mentioned throughout this website.
+      </Text>
+
+      <Text mt="md">
+        This is an instructional tool to explore the various files and formats
+        used in the creation of the game Chromehounds for <Bolded>educational purposes</Bolded>
       </Text>
 
       <Container p="0" pt="sm">
