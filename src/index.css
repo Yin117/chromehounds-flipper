@@ -7,6 +7,15 @@
   font-style: normal;
   font-display: swap; /* Ensures text is visible while loading */
 }
+@font-face {
+  font-family: 'ChromehoundsMono';
+  src: url('./assets/fonts/Chromehounds/ChromeHoundsMonoFont.woff2') format('woff2'),
+       url('./assets/fonts/Chromehounds/ChromeHoundsMonoFont.woff') format('woff'),
+       url('./assets/fonts/Chromehounds/ChromeHoundsMonoFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Ensures text is visible while loading */
+}
 
 html, body {
   margin: 0;
