@@ -4,6 +4,8 @@ import DragOntoWitchey from '@src/assets/images/Textures/Drag_BND_onto_Witchey.p
 import ExportTexturesWithNoesis from '@src/assets/images/Textures/ExportTexturesWithNoesis.png';
 import { Bolded } from '@src/components/Bolded/Bolded';
 
+const pythonAssetsPath = 'https://github.com/Yin117/chromehounds-flipper/tree/main/src/assets/python/';
+
 export function Textures() {
   return (
     <>
@@ -29,21 +31,30 @@ export function Textures() {
           {xprParser.name}
         </Anchor>
         {' '}by {xprParser.author}. 
-        however you will need some additional <Bolded>plugins</Bolded> in order to handle these files for export
+        however you will need some additional <Bolded>plugins</Bolded> commissioned
+        by <Bolded>Skizot</Bolded> in order to handle these files for export:
       </Text> 
       <List>
-        <List.Item>fmt_XBOX_360_XPC.py</List.Item>
-        <List.Item>fmt_XBOX_360_XPR.py</List.Item>
-        <List.Item>fmt_mdl4.py</List.Item>
+        <List.Item>
+          <Anchor target="_blank" href={pythonAssetsPath + 'fmt_XBOX_360_XPC.py'}>
+            fmt_XBOX_360_XPC.py
+          </Anchor>
+        </List.Item>
+        <List.Item>
+          <Anchor href={pythonAssetsPath + 'fmt_XBOX_360_XPR.py'}>
+            fmt_XBOX_360_XPR.py
+          </Anchor>
+        </List.Item>
+        <List.Item>
+          <Anchor href={pythonAssetsPath + 'fmt_mdl4.py'}>
+            fmt_mdl4.py
+          </Anchor>
+        </List.Item>
       </List>
       <Text>
         These plugins are placed in <Bolded>noesisv</Bolded>####<Bolded>\plugins\python</Bolded>
       </Text>
-      <Text>
-        For now, you can find these plugins in the OpenCOMBAS Discord Server.
-      </Text>
       <Image mt="sm" mah={270} maw={807} src={ExportTexturesWithNoesis} />
-      
     </>
   );
 }

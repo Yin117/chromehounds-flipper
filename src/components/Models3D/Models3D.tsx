@@ -41,7 +41,7 @@ export function Models3D() {
       </Text>
       <Text mt="sm">
         The exception to this is e.g. Godot if you want to preview them without funky normals, but we recommend
-        you do not use them for functional purposes in Godot; instead export from Blender.
+        you do not use them for functional purposes in Godot; instead fix and export from <Bolded>MDL</Bolded> files via Blender.
       </Text>
       <Text mt="sm">
         The tool <Bolded>{xprParser.name}</Bolded> can be used to generate <Bolded>FBX</Bolded> files, but they do import broken; either bad meshes or UVs.
@@ -65,8 +65,8 @@ export function Models3D() {
         shell ejection systems on guns, etc.
       </Text>
       <Text mt="md">
-        If when using in Godot you find that <Bolded>lighting</Bolded> acts in reverse; illuminating the farside of the models, you need to
-        clear the <Bolded>Clear Custom Normals Data</Bolded>.
+        If when using in Godot you find that <Bolded>lighting</Bolded> acts in reverse;
+        illuminating the farside of the models, you need to <Bolded>Clear Custom Normals Data</Bolded>.
         <br/>You do not need to do this to every vertex group, just ever Mesh (Object) in the Outliner (orange reversed triangle).
       </Text>
       <Image mah="250px" maw="300px" fit="contain" mt="sm" src={BlenderCustomNormalsData}/>

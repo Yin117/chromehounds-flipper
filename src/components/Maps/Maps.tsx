@@ -2,6 +2,8 @@ import { Box, Image, Text } from '@mantine/core';
 import { Bolded } from '@src/components/Bolded/Bolded';
 import MapTile_Flat_Textured from '@src/assets/images/Maps/MapTile_Flat_Textured.png';
 import Map_Blender_Perspective from '@src/assets/images/Maps/Map_Blender_Perspective.png';
+import MapTiles_VertexPainted_and_Shadered from "@src/assets/images/Maps/MapTiles_VertexPainted_and_Shadered.png";
+import MapTiles_VertexPainting_Compare_InProgress from "@src/assets/images/Maps/MapTiles_VertexPainting_Compare_InProgress.png";
 import Map_Meshed_Path from '@src/assets/images/Maps/Map_Meshed_Path.png';
 import Tile_Pieces from '@src/assets/images/Maps/Tile_Pieces.png';
 import InGame_Tile_Overlay_Combas_Path from '@src/assets/images/Maps/InGame_Tile_Overlay_Combas_Path.png';
@@ -62,9 +64,18 @@ export function Maps() {
 
       <Text mt="md">
         The tiles (at least in the one consulted) are arranged bottom-up, and left-to-right.
-        <br/>A full map can be re-created, but <Bolded>Texturing</Bolded> it, is the current barrier
+        <br/>A full map can be re-created, but <Bolded>Texturing</Bolded> it, is primary obstacle
       </Text>
       <Image mt="sm" mah="300" maw="600" src={Map_Blender_Perspective}/>
+
+      <Text mt="md">
+        Some fair progress was made in April 2026 with a mix of Joining the Meshes, Vertex Painting, and
+        a Shader to automatically color and blend based on the RGB of the painting; tedious and manual work
+        which perhaps can be somehow automated, but at present has not been furthur investigated
+      </Text>
+
+      <Image mt="sm" mah="300" maw="600" src={MapTiles_VertexPainting_Compare_InProgress} />
+      <Image mt="sm" mah="300" maw="600" src={MapTiles_VertexPainted_and_Shadered} />
 
 
       
