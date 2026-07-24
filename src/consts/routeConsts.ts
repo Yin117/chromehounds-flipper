@@ -7,6 +7,7 @@ import {
   IconYoga,
   IconVolume2,
   IconMapRoute,
+  IconLetterCase,
   // IconTimeline - Maybe for Workflows
 } from '@tabler/icons-react';
 
@@ -53,6 +54,11 @@ export const routesLookup = {
     path: 'Photos',
     label: 'Gallery',
   },
+  fontViewer: {
+    icon: IconLetterCase,
+    path: 'Fonts',
+    label: 'Fonts',
+  },
 } as const satisfies Record<string, Route>;
 
 export const routes: Route[] = [
@@ -63,4 +69,5 @@ export const routes: Route[] = [
   routesLookup.audio,
   routesLookup.maps,
   routesLookup.gallery,
+  routesLookup.fontViewer,
 ]

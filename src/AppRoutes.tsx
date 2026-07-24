@@ -8,6 +8,7 @@ import { Textures } from '@src/components/Textures/Textures';
 import { Rigging } from '@src/components/Rigging/Rigging';
 import { Audio } from '@src/components/AudioExtract/Audio';
 import { Maps } from './components/Maps/Maps';
+import { FontViewer } from './components/FontViewer/FontViewer';
 
 export function App() {
   return (
@@ -25,6 +26,7 @@ export function App() {
           <Route path="Photos" element={<Gallery />} />
           <Route path="Audio" element={<Audio />} />
           <Route path="Maps" element={<Maps />} />
+          <Route path="Fonts" element={<FontViewer />} />
         </Route>
       </Routes>
     </HashRouter>

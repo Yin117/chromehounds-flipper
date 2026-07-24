@@ -1,0 +1,18 @@
+
+.charactersList {
+  font-size: 3em;
+  word-break: break-all;
+}
+
+.characterWrapper {
+  min-width: 10vw;
+}
+
+.characterText:hover {
+  outline: 1px solid red;
+}
+
+.character {
+  font-size: 10em;
+  margin: 0 6px;
+}
